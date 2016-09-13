@@ -1,0 +1,26 @@
+<ion-view title="Lab Counts" id="viewLabCounts">
+    <ion-content padding="true" class="has-header">
+        <h1 id="labCountsReport-heading2" style="color:#000000;text-align:center;">Lab Counts</h1>
+        <form id="labCountsReport-form5" class="list">
+            <label class="item item-input" id="labCountsReport-input6">
+                <span class="input-label">Select Date</span>
+                <input type="date" ng-model="report.reportDate" value="{{ report.reportDate }}" ng-change="dateChanged()"/>
+            </label>
+        </form>
+        <!-- Create a List Divider for each Category, Using Angular GroupBy Filter -->
+        <ion-list id="Category-list" ng-repeat="(category, categoryData) in labCounts | groupBy: 'Category'">
+            <div class="item item-divider">
+                {{category}}
+            </div>
+            <!-- Create a List of items for each Category "TestId"-->
+            <ion-list id="labTest-list">
+                <ion-item  ng-repeat="labCount in categoryData" >
+                    <a href="#/labDetailsReport/{{report.reportDate|date:'yyyy-MM-dd'}}/{{labCount.TestId}}/{{labCount.TestName}}">
+                        <span> {{labCount.TestName}}</span>,&nbsp;&nbsp;
+                        <span>Count - {{labCount.Count}}</span>
+                    </a>
+                </ion-item>
+            </ion-list>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,24 @@
+<ion-view title="Lab Details" id="viewLabDetails">
+    <ion-nav-bar>
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+    </ion-nav-bar>
+    <ion-content padding="true" class="has-header">
+        <h1 id="labDetailsReport-heading2" style="color:#000000;text-align:center;">Lab Details</h1>
+        <form id="labDetailsReport-form5" class="list">
+            <label class="item" id="labCountsReport-input6">
+                <span class="input-label">Report Date : {{report.reportDate| date}}</span>
+                <span class="input-label">Lab Test: {{report.labName}}</span>
+            </label>
+        </form>
+        <!-- Create a List Divider for each Category, Using Angular GroupBy Filter -->
+        <ion-list id="lab-details-list" ng-repeat="labDetail in labDetails">
+            <!-- Create a List of items for each Category "TestId"-->
+            <ion-item>
+                <span class="input-label">Patient: {{labDetail.PatientName}}({{labDetail.Gender}})</span>
+                <span class="input-label">Doctor: {{labDetail.ProviderName}}</span>
+                <span class="input-label">Status: {{labDetail.TestStatus}}</span>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>

@@ -1,0 +1,11 @@
+{"Activities":
+  [
+	{"Activity":"OP","Count":0,"Amount":0.00},
+	{"Activity":"IP","Count":7,"Amount":1042880.00},
+	{"Activity":"Laboratory","Count":2,"Amount":2915.00},
+	{"Activity":"ECG","Count":1,"Amount":500.00},
+	{"Activity":"Radiology","Count":1,"Amount":2625.00},
+	{"Activity":"Canteen","Count":0,"Amount":0},
+	{"Activity":"Pharmacy","Count":2,"Amount":2520.00}
+  ]
+}

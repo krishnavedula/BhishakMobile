@@ -1,0 +1,21 @@
+<ion-view title="Daily Activity Report" id="viewDailyActivity">
+    <ion-content padding="true" class="has-header">
+        <h1 id="dailyActivityReport-heading4" style="color:#000000;text-align:center;">Daily Activity</h1>
+        <ion-list id="dailyActivityReport-list7">
+            <label class="item item-input" id="dailyActivityReport-input4">
+                <span class="input-label">Select Date</span>
+                <input type="date" ng-model="formData.activityDate" value="{{ report.reportDate }}" ng-change="dateChanged()"/>
+            </label>
+            
+        </ion-list>
+        <ion-list id="dailyActivityReport-list8">
+            <ion-item  ng-repeat="activity in dailyActivities" >
+                <div class=" item-divider">{{activity.Activity}}</div>
+                <div class="">
+                    <span>Count - {{activity.Count}}</span>,&nbsp;&nbsp;
+                    <span>Amount - {{activity.Amount|currency:'&#8377;'}}</span>
+                </div>
+            </ion-item>
+        </ion-list>
+    </ion-content>
+</ion-view>
