@@ -14,11 +14,9 @@
             </div>
             <!-- Create a List of items for each Category "TestId"-->
             <ion-list id="labTest-list">
-                <ion-item  ng-repeat="labCount in categoryData" >
-                    <a href="#/labDetailsReport/{{report.reportDate|date:'yyyy-MM-dd'}}/{{labCount.TestId}}/{{labCount.TestName}}">
-                        <span> {{labCount.TestName}}</span>,&nbsp;&nbsp;
-                        <span>Count - {{labCount.Count}}</span>
-                    </a>
+                <ion-item  ng-repeat="labCount in categoryData" ng-click="showLabDetail(report.reportDate, labCount.TestId, labCount.TestName)">
+                    <span> {{labCount.TestName}}</span>,&nbsp;&nbsp;
+                    <span>Count - {{labCount.Count}}</span>
                 </ion-item>
             </ion-list>
         </ion-list>

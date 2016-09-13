@@ -12,10 +12,25 @@ function ($scope, $stateParams) {
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
 function ($scope, $stateParams) {
-
-
 }])
-         
+
+
+.controller('logoutCtrl', ['$scope', '$state','$stateParams', '$ionicLoading', 'LoginSvc',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+// You can include any angular dependencies as parameters for this function
+// TIP: Access Route Parameters for your page via $stateParams.parameterName
+function ($scope, $state, $stateParams, $ionicLoading, LoginSvc) {
+    $scope.login = {};
+
+    $scope.logoutUser = function() {
+        $ionicLoading.show({
+            template: 'Logging out User. ',
+            duration: 1500
+        });
+        $state.go("login")
+    }
+    $scope.logoutUser();
+}])
+
 .controller('loginCtrl', ['$scope', '$state','$stateParams', '$ionicLoading', 'LoginSvc',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
@@ -30,8 +45,11 @@ function ($scope, $state, $stateParams, $ionicLoading, LoginSvc) {
             return;
         }
         $ionicLoading.show({template:'Logging in User'});
-        $scope.labCounts = LoginSvc.authenticate($scope.login.userId, $scope.login.password,
-            $scope.loginSuccess, $scope.loginError);
+        $scope.labCounts = LoginSvc.authenticate(
+            $scope.login.userId, 
+            $scope.login.password,
+            $scope.loginSuccess, 
+            $scope.loginError);
     }
 
     // Success Handler. Set the $scope with dailyActivities.
@@ -58,10 +76,10 @@ function ($scope, $state, $stateParams, $ionicLoading, LoginSvc) {
 
 }])
    
-.controller('labReportCtrl', ['$scope', '$filter','$stateParams', '$ionicLoading','LabTestsDataSvc',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
+.controller('labReportCtrl', ['$scope', '$filter','$state','$stateParams', '$ionicLoading','LabTestsDataSvc',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
-function ($scope, $filter, $stateParams, $ionicLoading, LabTestsDataSvc) {
+function ($scope, $filter, $state, $stateParams, $ionicLoading, LabTestsDataSvc) {
     $scope.labCounts = [];
     $scope.report = {};
     $scope.report.reportDate = new Date();
@@ -76,6 +94,12 @@ function ($scope, $filter, $stateParams, $ionicLoading, LabTestsDataSvc) {
         $scope.labCounts = LabTestsDataSvc.getData(rptDate,$scope.onSuccess, $scope.onError);
     }
 
+    // This is the method that navigates to teh details tab.
+    $scope.showLabDetail = function(rDate, labId, labName) {
+        var rptDate = $filter('date')(rDate, 'MM-dd-yyyy');
+        
+        $state.go('tabsController.labDetailsReport',{reportDate:rptDate,labId:labId,labName:labName});
+    }
     // Success Handler. Set the $scope with dailyActivities.
     $scope.onSuccess = function(resp){
         $scope.labCounts = resp.data.LabTestCount;
@@ -90,7 +114,6 @@ function ($scope, $filter, $stateParams, $ionicLoading, LabTestsDataSvc) {
         $scope.labCounts = [];
     }
     $scope.dateChanged();
-
 }])
 
 .controller('labDetailsReportCtrl', ['$scope', '$filter','$stateParams', '$ionicLoading','LabTestsDataSvc',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -106,9 +129,11 @@ function ($scope, $filter, $stateParams, $ionicLoading, LabTestsDataSvc) {
     $scope.report.labName = $stateParams.labName;
     $scope.report.reportDate = $stateParams.reportDate;
 
-    // $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
-    //     viewData.enableBack = true;
-    // });
+    // Force the Back button.
+    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+        viewData.enableBack = true;
+    });
+
     // Called when the input filed value changes.
     $scope.showDetails = function() {
         if ($scope.report.reportDate == null) {
@@ -179,7 +204,6 @@ function ($scope, $filter, $stateParams, $ionicLoading, DailyActivitySvc) {
     $scope.dateChanged();
 }])
 
-
 .controller('doctorConsultationsReportCtrl', ['$scope', '$filter','$stateParams', '$ionicLoading','DoctorConsultationsSvc',// The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
 // You can include any angular dependencies as parameters for this function
 // TIP: Access Route Parameters for your page via $stateParams.parameterName
@@ -213,7 +237,6 @@ function ($scope, $filter, $stateParams, $ionicLoading, DoctorConsultationsSvc) 
     }
     // By Default, load today's data on first load
     $scope.dateChanged();
-
 }])
 
 .controller('dashboardCtrl', ['$scope', '$stateParams', // The following is the constructor function for this page's controller. See https://docs.angularjs.org/guide/controller
@@ -222,5 +245,5 @@ function ($scope, $filter, $stateParams, $ionicLoading, DoctorConsultationsSvc) 
 function ($scope, $stateParams) {
 
 
-}])
+}]);
  

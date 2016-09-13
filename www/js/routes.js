@@ -38,6 +38,12 @@ angular.module('BhishakReports.routes', [])
     controller: 'loginCtrl'
   })
 
+  .state('logout', {
+    url: '/logout',
+    templateUrl: 'templates/login.html',
+    controller: 'logoutCtrl'
+  })
+
   .state('tabsController.labCountsReport', {
     url: '/labCountsReport',
     views: {
@@ -47,16 +53,16 @@ angular.module('BhishakReports.routes', [])
       }
     }
   })
-  .state('labDetailsReport', {
+  .state('tabsController.labDetailsReport', {
     url: '/labDetailsReport/:reportDate/:labId/:labName',
-    templateUrl: 'templates/labDetailsReport.html',
-    controller: 'labDetailsReportCtrl'
-    // views: {
-    //   'reports': {
-    //    templateUrl: 'templates/labDetailsReport.html',
-    //     controller: 'labDetailsReportCtrl'
-    //   }
-    // }
+    //templateUrl: 'templates/labDetailsReport.html',
+    //controller: 'labDetailsReportCtrl'
+    views: {
+       'reports': {
+        templateUrl: 'templates/labDetailsReport.html',
+         controller: 'labDetailsReportCtrl'
+       }
+    }
   })
 
   .state('tabsController.doctorConsultationsReport', {

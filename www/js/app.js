@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('BhishakReports', ['ionic', 'BhishakReports.controllers', 'BhishakReports.routes', 'BhishakReports.directives','BhishakReports.services','angular.filter'])
+angular.module('BhishakReports', ['ionic', 'BhishakReports.controllers', 'BhishakReports.routes', 'BhishakReports.directives','BhishakReports.services','BhishakReports.filters','angular.filter'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

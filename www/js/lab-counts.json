@@ -1,13 +1,13 @@
 {
   "LabTestCount":[
-	{"TestName":"Serum AFP (Alpha Feto Protein)","Count":1,"Category":"Clinical Biochemistry"},
-	{"TestName":"Serum Bilirubin","Count":1,"Category":"Clinical Biochemistry"},
-	{"TestName":"Serum Cholesterol","Count":1,"Category":"Clinical Biochemistry"},
-	{"TestName":"Serum Amylase","Count":1,"Category":"Clinical Biochemistry"},
-	{"TestName":"Serum Chlorides","Count":1,"Category":"Clinical Biochemistry"},
-	{"TestName":"Serum Cortisol","Count":1,"Category":"Clinical Biochemistry"},
-	{"TestName":"Serum Creatinine","Count":1,"Category":"Clinical Biochemistry"},
-	{"TestName":"AFE-ASCITIC FLUID  EXAMINATIOON","Count":1,"Category":"Examination Of Body Fluid"},
-	{"TestName":"Sputum For C/S","Count":1,"Category":"MicroBiology-Culture And Sensitivity"}
+	{"TestName":"Serum AFP (Alpha Feto Protein)","Count":1,"Category":"Clinical Biochemistry", "TestId":1123},
+	{"TestName":"Serum Bilirubin","Count":1,"Category":"Clinical Biochemistry","TestId":1123},
+	{"TestName":"Serum Cholesterol","Count":1,"Category":"Clinical Biochemistry","TestId":1123},
+	{"TestName":"Serum Amylase","Count":1,"Category":"Clinical Biochemistry","TestId":1231},
+	{"TestName":"Serum Chlorides","Count":1,"Category":"Clinical Biochemistry","TestId":1234},
+	{"TestName":"Serum Cortisol","Count":1,"Category":"Clinical Biochemistry","TestId":1235},
+	{"TestName":"Serum Creatinine","Count":1,"Category":"Clinical Biochemistry","TestId":1203},
+	{"TestName":"AFE-ASCITIC FLUID  EXAMINATIOON","Count":1,"Category":"Examination Of Body Fluid","TestId":1023},
+	{"TestName":"Sputum For C/S","Count":1,"Category":"MicroBiology-Culture And Sensitivity","TestId":1234}
   ]
 }

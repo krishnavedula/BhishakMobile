@@ -21,15 +21,15 @@ angular.module('BhishakReports.services', [])
 
 .service('LabTestsDataSvc', ['$http', 'NETWORK', function($http, NETWORK){
     this.getData = function(actDate,onSuccess,onError) {
-    	var labCountsUrl =  NETWORK.BASE_URL + '/DailyActivityDetails.asmx/LabTestCountReport?date=' + actDate;
-    	//var labCountsUrl = '/js/lab-counts.json'
+    	//var labCountsUrl =  NETWORK.BASE_URL + '/DailyActivityDetails.asmx/LabTestCountReport?date=' + actDate;
+    	var labCountsUrl = '/js/lab-counts.json'
     	$http.get(labCountsUrl).then(
         onSuccess,onError);
     }
     this.getDetails = function(actDate,labId, onSuccess, onError) {
-    	var labDetailsUrl =  NETWORK.BASE_URL + '/DailyActivityDetails.asmx/LabTestdetailsReport?date=' + actDate;
-    	var labDetailsUrl = labDetailsUrl + "&testId=" + labId;
-    	//var labCountsUrl = '/js/lab-details.json'
+    	//var labDetailsUrl =  NETWORK.BASE_URL + '/DailyActivityDetails.asmx/LabTestdetailsReport?date=' + actDate;
+    	//labDetailsUrl = labDetailsUrl + "&testId=" + labId;
+    	var labDetailsUrl = '/js/lab-details.json'
     	//http://10.10.90.52/HIMSReportServices/DailyActivityDetails.asmx/LabTestdetailsReport?date=09-10-2016&testId=1086
     	$http.get(labDetailsUrl).then(
         onSuccess,onError);
@@ -47,8 +47,9 @@ angular.module('BhishakReports.services', [])
 
 .service('LoginSvc', ['$http', 'NETWORK', function($http, NETWORK){
     this.authenticate = function(userId, password,onSuccess,onError) {
-    	var authenticateURL =  NETWORK.BASE_URL + '/DailyActivityDetails.asmx/LoginAuthentication';
-    	var authenticateURL = authenticateURL + "?Username=" + userId + "&Password=" + password;
+    	//var authenticateURL =  NETWORK.BASE_URL + '/DailyActivityDetails.asmx/LoginAuthentication';
+    	//authenticateURL = authenticateURL + "?Username=" + userId + "&Password=" + password;
+        var authenticateURL = "js/authenticate.json";
     	$http.get(authenticateURL).then(onSuccess,onError);
     	// $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
     
