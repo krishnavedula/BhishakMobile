@@ -3,7 +3,9 @@ angular.module('BhishakReports.services', [])
 	{
 		//"BASE_URL", "http://10.10.90.52/HIMSReportServices")
 		// Work-around for CORS Proxy
-		"BASE_URL":"http://localhost:1337/10.10.90.52/HIMSReportServices"
+        //"CORS_PROXY": "http://",
+        "CORS_PROXY":"http://localhost:1337/",
+		"BASE_URL":"10.10.90.52/HIMSReportServices/DailyActivityDetails.asmx"
 	}
 )
 .factory('BlankFactory', [function(){
@@ -12,44 +14,40 @@ angular.module('BhishakReports.services', [])
 
 .service('DailyActivitySvc', ['$http', 'NETWORK', function($http, NETWORK){
     this.getData = function(actDate,onSuccess,onError) {
-    	//var dailyActivityUrl =  NETWORK.BASE_URL + '/DailyActivityDetails.asmx/DailyActivityDetailsReport?date=' + actDate;
-    	var dailyActivityUrl = '/js/activity-data.json'
-    	$http.get(dailyActivityUrl).then(
-        onSuccess,onError);
+    	var dailyActivityUrl =  NETWORK.CORS_PROXY + NETWORK.BASE_URL + '/DailyActivityDetailsReport?date=' + actDate;
+    	//var dailyActivityUrl = '/js/activity-data.json'
+    	$http.get(dailyActivityUrl).then(onSuccess,onError);
     }
 }])
 
 .service('LabTestsDataSvc', ['$http', 'NETWORK', function($http, NETWORK){
     this.getData = function(actDate,onSuccess,onError) {
-    	//var labCountsUrl =  NETWORK.BASE_URL + '/DailyActivityDetails.asmx/LabTestCountReport?date=' + actDate;
-    	var labCountsUrl = '/js/lab-counts.json'
-    	$http.get(labCountsUrl).then(
-        onSuccess,onError);
+    	var labCountsUrl =  NETWORK.CORS_PROXY + NETWORK.BASE_URL + '/LabTestCountReport?date=' + actDate;
+    	//var labCountsUrl = '/js/lab-counts.json'
+    	$http.get(labCountsUrl).then(onSuccess,onError);
     }
     this.getDetails = function(actDate,labId, onSuccess, onError) {
-    	//var labDetailsUrl =  NETWORK.BASE_URL + '/DailyActivityDetails.asmx/LabTestdetailsReport?date=' + actDate;
-    	//labDetailsUrl = labDetailsUrl + "&testId=" + labId;
-    	var labDetailsUrl = '/js/lab-details.json'
-    	//http://10.10.90.52/HIMSReportServices/DailyActivityDetails.asmx/LabTestdetailsReport?date=09-10-2016&testId=1086
-    	$http.get(labDetailsUrl).then(
-        onSuccess,onError);
+    	var labDetailsUrl =  NETWORK.CORS_PROXY + NETWORK.BASE_URL + '/LabTestdetailsReport?date=' + actDate;
+    	labDetailsUrl = labDetailsUrl + "&testId=" + labId;
+    	//var labDetailsUrl = '/js/lab-details.json'
+        
+    	$http.get(labDetailsUrl).then(onSuccess,onError);
     }
 }])
 
 .service('DoctorConsultationsSvc', ['$http', 'NETWORK', function($http, NETWORK){
     this.getData = function(actDate,onSuccess,onError) {
-    	var doctorConsultationUrl =  NETWORK.BASE_URL + '/DailyActivityDetails.asmx/DoctorConsultaionCountReport?date=' + actDate;
+    	var doctorConsultationUrl =  NETWORK.CORS_PROXY + NETWORK.BASE_URL + '/DoctorConsultaionCountReport?date=' + actDate;
     	//var doctorConsultationUrl = '/js/lab-counts.json'
-    	$http.get(doctorConsultationUrl).then(
-        onSuccess,onError);
+    	$http.get(doctorConsultationUrl).then(onSuccess,onError);
     }
 }])
 
 .service('LoginSvc', ['$http', 'NETWORK', function($http, NETWORK){
     this.authenticate = function(userId, password,onSuccess,onError) {
-    	//var authenticateURL =  NETWORK.BASE_URL + '/DailyActivityDetails.asmx/LoginAuthentication';
-    	//authenticateURL = authenticateURL + "?Username=" + userId + "&Password=" + password;
-        var authenticateURL = "js/authenticate.json";
+    	var authenticateURL =  NETWORK.CORS_PROXY + NETWORK.BASE_URL + '/LoginAuthentication';
+    	authenticateURL = authenticateURL + "?Username=" + userId + "&Password=" + password;
+        //var authenticateURL = "js/authenticate.json";
     	$http.get(authenticateURL).then(onSuccess,onError);
     	// $http.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
     
